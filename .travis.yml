@@ -1,0 +1,7 @@
+sudo: "required"
+services:
+  - "docker"
+before_install:
+  - docker build -t shubham14/docker-react -f Dockerfile .
+script:
+  - docker run -e CI=true shubham14/docker-react -f Dockerfile npm run test
