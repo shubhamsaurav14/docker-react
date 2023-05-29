@@ -1,0 +1,17 @@
+{
+  "name": "visit1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "chai": "^4.3.7",
+    "express": "*",
+    "mocha": "^10.2.0"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC"
+}

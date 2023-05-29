@@ -1,0 +1,25 @@
+version: '3'
+services:
+  redis-server:
+    image: redis
+    ports:
+      - '6379:6379'
+  node-app:
+    restart: 'no'
+    build: .
+    volumes:
+      - /app/node_modules
+      - './:/app'
+    ports:
+      - '8081:8081'
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - /app/node_modules
+      - '.:/app'
+    command:
+      - npm
+      - run
+      - test

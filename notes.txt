@@ -1,0 +1,32 @@
+version: "3"
+services:
+  redis-server:
+    image: "redis"
+    ports:
+      - "6379:6379"
+  node-app:
+    restart: "no"
+    build: "." 
+    volumes: 
+      - "/app/node_modules"
+      - "./:/app"
+    ports:
+      - "8081:8081"
+      # "hostPort:containerPort"
+  tests:
+    build:
+      context:  "."
+      dockerfile: "Dockerfile"
+    volumes:
+      - "/app/node_modules"
+      - ".:/app"
+    command:  "["npm","run","test"]"
+
+# version is the version of docker compose
+# docker-compose up  // to up the dockers
+# docker-compose up --build //to up the docker with new builds
+# docker-compose up -d //in the backend
+# docker-compose ps
+# restart policy 
+#   default: "no":it won't restart "always":if container stops for any reason it will start
+# "on-failure": except exit code 0; "unless-stopped": always start unless forcefully stopped it by developer
